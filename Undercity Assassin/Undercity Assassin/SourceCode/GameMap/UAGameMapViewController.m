@@ -10,11 +10,11 @@
 #import <MapKit/MapKit.h>
 #import "UAAppDelegate.h"
 #import "IIViewDeckController.h"
-@interface UAGameMapViewController ()
+@interface UAGameMapViewController () <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *gameMap;
 @property (nonatomic, strong) CLGeocoder *geocoder;
-
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @end
 
 @implementation UAGameMapViewController
@@ -42,11 +42,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.gameMap.showsUserLocation = YES;
-    self.gameMap.mapType = MKMapTypeSatellite;
     self.geocoder = [[CLGeocoder alloc] init];
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager startUpdatingLocation];
+    [self setupMap];
+    
     [self.view setBackgroundColor:[UIColor blackColor]];
+    
+    
     // Do any additional setup after loading the view from its nib.
+}
+- (void) setupMap {
+    self.gameMap.delegate = self;
+    self.gameMap.showsUserLocation = YES;
+    MKCoordinateRegion region;
+    //CLLocationCoordinate2D opponentCoordinate = CLLocationCoordinate2DMake(0,0);
+    region.center = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+    NSLog(@"GOT HERE");
+    MKCoordinateSpan span;
+    span.latitudeDelta  =0.005; // Change these values to change the zoom
+    span.longitudeDelta =0.015;
+    region.span = span;
+    [self.gameMap setRegion:region animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -21,14 +21,18 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
     UAGameMapViewController *mapView = [[UAGameMapViewController alloc] initWithNibName:@"UAGameMapViewController" bundle: [NSBundle mainBundle]];
     
     self.navigationController = [self makeNavigationControllerWithViewController:mapView];
+    self.navigationController.navigationBarHidden = YES;
     
     UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
-     IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController leftViewController:gameOptions];
     
-    self.navigationController.navigationBarHidden = YES;
+     IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController leftViewController:gameOptions];
+    deckViewController.centerhiddenInteractivity =IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing;
+    
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = deckViewController;
     self.window.backgroundColor = [UIColor whiteColor];
