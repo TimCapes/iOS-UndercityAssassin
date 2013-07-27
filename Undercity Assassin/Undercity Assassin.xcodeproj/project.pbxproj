@@ -18,6 +18,11 @@
 		ACAA5FA517A44AF700343E4D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FA417A44AF700343E4D /* Default@2x.png */; };
 		ACAA5FA717A44AF700343E4D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FA617A44AF700343E4D /* Default-568h@2x.png */; };
 		ACAA5FAA17A44AF800343E4D /* Undercity_Assassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FA817A44AF800343E4D /* Undercity_Assassin.xcdatamodeld */; };
+		ACAA5FBA17A44BE700343E4D /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FB417A44BE700343E4D /* IISideController.m */; };
+		ACAA5FBB17A44BE700343E4D /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FB617A44BE700343E4D /* IIViewDeckController.m */; };
+		ACAA5FBC17A44BE700343E4D /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FB817A44BE700343E4D /* IIWrapController.m */; };
+		ACAA5FBD17A44BE700343E4D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FB917A44BE700343E4D /* README.md */; };
+		ACAA5FC017A44C4C00343E4D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA5FBF17A44C4C00343E4D /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,14 @@
 		ACAA5FA417A44AF700343E4D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		ACAA5FA617A44AF700343E4D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		ACAA5FA917A44AF800343E4D /* Undercity_Assassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Undercity_Assassin.xcdatamodel; sourceTree = "<group>"; };
+		ACAA5FB317A44BE700343E4D /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
+		ACAA5FB417A44BE700343E4D /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
+		ACAA5FB517A44BE700343E4D /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		ACAA5FB617A44BE700343E4D /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		ACAA5FB717A44BE700343E4D /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
+		ACAA5FB817A44BE700343E4D /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
+		ACAA5FB917A44BE700343E4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		ACAA5FBF17A44C4C00343E4D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +60,7 @@
 				ACAA5F9117A44AF700343E4D /* Foundation.framework in Frameworks */,
 				ACAA5F9317A44AF700343E4D /* CoreGraphics.framework in Frameworks */,
 				ACAA5F9517A44AF700343E4D /* CoreData.framework in Frameworks */,
+				ACAA5FC017A44C4C00343E4D /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +101,7 @@
 				ACAA5F9F17A44AF700343E4D /* UAAppDelegate.h */,
 				ACAA5FA017A44AF700343E4D /* UAAppDelegate.m */,
 				ACAA5FA817A44AF800343E4D /* Undercity_Assassin.xcdatamodeld */,
+				ACAA5FB017A44BE700343E4D /* SupportingClasses */,
 				ACAA5F9717A44AF700343E4D /* Supporting Files */,
 			);
 			path = "Undercity Assassin";
@@ -104,6 +119,45 @@
 				ACAA5FA617A44AF700343E4D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACAA5FB017A44BE700343E4D /* SupportingClasses */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FB117A44BE700343E4D /* VendorClasses */,
+			);
+			path = SupportingClasses;
+			sourceTree = "<group>";
+		};
+		ACAA5FB117A44BE700343E4D /* VendorClasses */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FBE17A44C4C00343E4D /* FacebookSDK */,
+				ACAA5FB217A44BE700343E4D /* IIViewDeck */,
+			);
+			path = VendorClasses;
+			sourceTree = "<group>";
+		};
+		ACAA5FB217A44BE700343E4D /* IIViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FB317A44BE700343E4D /* IISideController.h */,
+				ACAA5FB417A44BE700343E4D /* IISideController.m */,
+				ACAA5FB517A44BE700343E4D /* IIViewDeckController.h */,
+				ACAA5FB617A44BE700343E4D /* IIViewDeckController.m */,
+				ACAA5FB717A44BE700343E4D /* IIWrapController.h */,
+				ACAA5FB817A44BE700343E4D /* IIWrapController.m */,
+				ACAA5FB917A44BE700343E4D /* README.md */,
+			);
+			path = IIViewDeck;
+			sourceTree = "<group>";
+		};
+		ACAA5FBE17A44C4C00343E4D /* FacebookSDK */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FBF17A44C4C00343E4D /* FacebookSDK.framework */,
+			);
+			path = FacebookSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +216,7 @@
 				ACAA5FA317A44AF700343E4D /* Default.png in Resources */,
 				ACAA5FA517A44AF700343E4D /* Default@2x.png in Resources */,
 				ACAA5FA717A44AF700343E4D /* Default-568h@2x.png in Resources */,
+				ACAA5FBD17A44BE700343E4D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +230,9 @@
 				ACAA5F9D17A44AF700343E4D /* main.m in Sources */,
 				ACAA5FA117A44AF700343E4D /* UAAppDelegate.m in Sources */,
 				ACAA5FAA17A44AF800343E4D /* Undercity_Assassin.xcdatamodeld in Sources */,
+				ACAA5FBA17A44BE700343E4D /* IISideController.m in Sources */,
+				ACAA5FBB17A44BE700343E4D /* IIViewDeckController.m in Sources */,
+				ACAA5FBC17A44BE700343E4D /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +309,10 @@
 		ACAA5FAE17A44AF800343E4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Undercity Assassin/SupportingClasses/VendorClasses/FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Undercity Assassin/Undercity Assassin-Prefix.pch";
 				INFOPLIST_FILE = "Undercity Assassin/Undercity Assassin-Info.plist";
@@ -262,6 +324,10 @@
 		ACAA5FAF17A44AF800343E4D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Undercity Assassin/SupportingClasses/VendorClasses/FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Undercity Assassin/Undercity Assassin-Prefix.pch";
 				INFOPLIST_FILE = "Undercity Assassin/Undercity Assassin-Info.plist";
