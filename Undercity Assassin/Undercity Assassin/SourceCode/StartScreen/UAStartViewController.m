@@ -11,11 +11,13 @@
 #import "UAGameOptionsViewController.h"
 #import "IIViewDeckController.h"
 #import "UAAppDelegate.h"
+#import "UASwipeViewController.h"
 
 @interface UAStartViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) NSMutableArray *viewControllers;
 
 @end
 
@@ -23,6 +25,7 @@
 
 @synthesize scrollView = _scrollView;
 @synthesize imageView = _imageView;
+@synthesize viewControllers = _viewControllers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,35 +39,63 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupNumberOfPages];
     [self setupScrollView];
-    [self makeImageForScrollView];
-    [self makeZoomGesturesForScrollView];
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void) setupNumberOfPages {
+    NSUInteger numberPages = 2;
+    // view controllers are created lazily
+    // in the meantime, load the array with placeholders which will be replaced on demand
+    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+    for (NSUInteger i = 0; i < numberPages; i++)
+    {
+		[controllers addObject:[NSNull null]];
+    }
+    self.viewControllers = controllers;
+}
 - (void) setupScrollView {
     self.scrollView.pagingEnabled=YES;
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
+    [self loadScrollViewWithPage:0];
+    [self loadScrollViewWithPage:1];
 }
 
-- (void) makeImageForScrollView {
-    UIImage *image = [UIImage imageNamed:@"image_city_skyline.png"];
-    self.imageView = [[UIImageView alloc] initWithImage:image];
-    self.imageView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=image.size};
-    [self.scrollView addSubview:self.imageView];
+- (void)loadScrollViewWithPage:(NSUInteger)page
+{
+    if (page >= 2) {
+        return;
+    }
+    // replace the placeholder if necessary
+    UASwipeViewController *controller = [self.viewControllers objectAtIndex:page];
+    if ((NSNull *)controller == [NSNull null])
+    {
+        controller = [[UASwipeViewController alloc] initWithPageNumber:page];
+        [self.viewControllers replaceObjectAtIndex:page withObject:controller];
+    }
+    // add the controller's view to the scroll view
+    if (controller.view.superview == nil)
+    {
+        CGRect frame = self.scrollView.frame;
+        frame.origin.x = 0;
+        frame.origin.y = (CGRectGetHeight(frame)-88)*page; //Don't forget to subtract size of status bar
+        controller.view.frame = frame;
+        
+        [self addChildViewController:controller];
+        [self.scrollView addSubview:controller.view];
+        [controller didMoveToParentViewController:self];
+        NSString *imageName;
+        if (page==0) {
+            imageName = @"image_city_skyline";
+        }
+        else if (page==1){
+            imageName = @"image_facebook_background";
+        }
+        controller.swipeImage.image = [UIImage imageNamed:imageName];
+    }
 }
-- (void) makeZoomGesturesForScrollView {
-    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewDoubleTapped:)];
-    doubleTapRecognizer.numberOfTapsRequired = 2;
-    doubleTapRecognizer.numberOfTouchesRequired = 1;
-    [self.scrollView addGestureRecognizer:doubleTapRecognizer];
 
-    UITapGestureRecognizer *twoFingerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewTwoFingerTapped:)];
-    twoFingerTapRecognizer.numberOfTapsRequired = 1;
-    twoFingerTapRecognizer.numberOfTouchesRequired = 2;
-    [self.scrollView addGestureRecognizer:twoFingerTapRecognizer];
-
-}
 
 - (void)centerScrollViewContents {
     CGSize boundsSize = self.scrollView.bounds.size;
@@ -85,39 +116,8 @@
     self.imageView.frame = contentsFrame;
 }
 
-- (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer {
-    // 1
-    CGPoint pointInView = [recognizer locationInView:self.imageView];
-    
-    // 2
-    CGFloat newZoomScale = self.scrollView.zoomScale * 1.5f;
-    newZoomScale = MIN(newZoomScale, self.scrollView.maximumZoomScale);
-    
-    // 3
-    CGSize scrollViewSize = self.scrollView.bounds.size;
-    
-    CGFloat w = scrollViewSize.width / newZoomScale;
-    CGFloat h = scrollViewSize.height / newZoomScale;
-    CGFloat x = pointInView.x - (w / 2.0f);
-    CGFloat y = pointInView.y - (h / 2.0f);
-    
-    CGRect rectToZoomTo = CGRectMake(x, y, w, h);
-    
-    // 4
-    [self.scrollView zoomToRect:rectToZoomTo animated:YES];
-}
 
-- (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer {
-    // Zoom out slightly, capping at the minimum zoom scale specified by the scroll view
-    CGFloat newZoomScale = self.scrollView.zoomScale / 1.5f;
-    newZoomScale = MAX(newZoomScale, self.scrollView.minimumZoomScale);
-    [self.scrollView setZoomScale:newZoomScale animated:YES];
-}
 
-- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    // Return the view that you want to zoom
-    return self.imageView;
-}
 
 
 - (void)didReceiveMemoryWarning
@@ -137,10 +137,8 @@
 - (void) scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     
 }
-- (void) scrollViewDidZoom:(UIScrollView *)scrollView {
-    [self centerScrollViewContents];
-}
 
+//This code will eventually be pushed back. A fully interactive start-menu is needed post FB sign-in.
 - (IBAction) signedIn {
     UAAppDelegate *appDelegate = (UAAppDelegate *)[[UIApplication sharedApplication] delegate];
 

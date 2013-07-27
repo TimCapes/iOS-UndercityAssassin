@@ -35,6 +35,9 @@
 		ACAA5FF317A4619C00343E4D /* UAStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FF117A4619C00343E4D /* UAStartViewController.m */; };
 		ACAA5FF417A4619C00343E4D /* UAStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FF217A4619C00343E4D /* UAStartViewController.xib */; };
 		ACAA5FF617A468F100343E4D /* image_city_skyline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FF517A468F100343E4D /* image_city_skyline@2x.png */; };
+		ACAA5FFB17A46CE000343E4D /* UASwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FF917A46CE000343E4D /* UASwipeViewController.m */; };
+		ACAA5FFC17A46CE000343E4D /* UASwipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */; };
+		ACAA5FFE17A46EB400343E4D /* image_facebook_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FFD17A46EB400343E4D /* image_facebook_background@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +80,10 @@
 		ACAA5FF117A4619C00343E4D /* UAStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAStartViewController.m; sourceTree = "<group>"; };
 		ACAA5FF217A4619C00343E4D /* UAStartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAStartViewController.xib; sourceTree = "<group>"; };
 		ACAA5FF517A468F100343E4D /* image_city_skyline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_city_skyline@2x.png"; sourceTree = "<group>"; };
+		ACAA5FF817A46CE000343E4D /* UASwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UASwipeViewController.h; sourceTree = "<group>"; };
+		ACAA5FF917A46CE000343E4D /* UASwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UASwipeViewController.m; sourceTree = "<group>"; };
+		ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UASwipeViewController.xib; sourceTree = "<group>"; };
+		ACAA5FFD17A46EB400343E4D /* image_facebook_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_facebook_background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +198,7 @@
 			children = (
 				ACAA5FD017A4532800343E4D /* icon_menu@2x.png */,
 				ACAA5FF517A468F100343E4D /* image_city_skyline@2x.png */,
+				ACAA5FFD17A46EB400343E4D /* image_facebook_background@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -208,6 +216,7 @@
 		ACAA5FD817A45D7F00343E4D /* SupportingClasses */ = {
 			isa = PBXGroup;
 			children = (
+				ACAA5FF717A46CD100343E4D /* HelperClasses */,
 				ACAA5FD917A45D7F00343E4D /* VendorClasses */,
 			);
 			path = SupportingClasses;
@@ -261,6 +270,16 @@
 				ACAA5FF217A4619C00343E4D /* UAStartViewController.xib */,
 			);
 			path = StartScreen;
+			sourceTree = "<group>";
+		};
+		ACAA5FF717A46CD100343E4D /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FF817A46CE000343E4D /* UASwipeViewController.h */,
+				ACAA5FF917A46CE000343E4D /* UASwipeViewController.m */,
+				ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */,
+			);
+			path = HelperClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +344,8 @@
 				ACAA5FE817A45D7F00343E4D /* README.md in Resources */,
 				ACAA5FF417A4619C00343E4D /* UAStartViewController.xib in Resources */,
 				ACAA5FF617A468F100343E4D /* image_city_skyline@2x.png in Resources */,
+				ACAA5FFC17A46CE000343E4D /* UASwipeViewController.xib in Resources */,
+				ACAA5FFE17A46EB400343E4D /* image_facebook_background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +366,7 @@
 				ACAA5FE717A45D7F00343E4D /* IIWrapController.m in Sources */,
 				ACAA5FEC17A45DC400343E4D /* UATarget.m in Sources */,
 				ACAA5FF317A4619C00343E4D /* UAStartViewController.m in Sources */,
+				ACAA5FFB17A46CE000343E4D /* UASwipeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
