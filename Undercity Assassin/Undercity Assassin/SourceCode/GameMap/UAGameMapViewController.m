@@ -10,11 +10,15 @@
 #import <MapKit/MapKit.h>
 #import "UAAppDelegate.h"
 #import "IIViewDeckController.h"
+#import "UATarget.h"
+
 @interface UAGameMapViewController () <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *gameMap;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property CLLocationCoordinate2D opponent;
+
 @end
 
 @implementation UAGameMapViewController
@@ -42,30 +46,49 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //TEMPORARY CODE FOR DEMO: SAMPLE OPPONENT AT BNOTIONS
+    self.opponent = CLLocationCoordinate2DMake(43.649897,-79.370374);
+    
     self.geocoder = [[CLGeocoder alloc] init];
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager startUpdatingLocation];
     [self setupMap];
-    
     [self.view setBackgroundColor:[UIColor blackColor]];
-    
-    
     // Do any additional setup after loading the view from its nib.
 }
 - (void) setupMap {
+    
     self.gameMap.delegate = self;
     self.gameMap.showsUserLocation = YES;
+    
     MKCoordinateRegion region;
-    //CLLocationCoordinate2D opponentCoordinate = CLLocationCoordinate2DMake(0,0);
-    region.center = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
-    NSLog(@"GOT HERE");
+    region.center = self.opponent;
+
     MKCoordinateSpan span;
-    span.latitudeDelta  =0.005; // Change these values to change the zoom
-    span.longitudeDelta =0.015;
+    span.latitudeDelta  =ABS(self.opponent.latitude - self.locationManager.location.coordinate.latitude)*2; // ENSURE INITIAL MAP HAS USER AND TARGET VISIBLE!
+    span.longitudeDelta =ABS(self.opponent.longitude - self.locationManager.location.coordinate.longitude)*2; //ENSURE INITIAL MAP HAS USER AND TARGET VISIBLE!
     region.span = span;
+    
     [self.gameMap setRegion:region animated:YES];
+    
+    UATarget *target= [[UATarget alloc] init];
+    target.coordinate = self.opponent;
+    target.title=@"Your Target";
+    //target.subtitle = @"Assassinate this person";
+    [self.gameMap addAnnotation:target];
+    [self.gameMap selectAnnotation:target animated:NO];
+
 
 }
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    [self.geocoder reverseGeocodeLocation:self.gameMap.userLocation.location completionHandler:^(NSArray *placemarks, NSError *error) {
+        //self.placemark = [placemarks objectAtIndex:0];
+        //Rezooming Code??
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
