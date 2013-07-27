@@ -13,6 +13,5 @@
     CLLocationCoordinate2D _coordinate;
 }
 @property(nonatomic, retain) NSString *title;
-//@property(nonatomic, retain) NSString *subtitle;
 
 @end

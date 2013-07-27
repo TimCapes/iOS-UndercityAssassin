@@ -13,11 +13,7 @@
 
 - (NSString *)title {
     return _title;
-}
-
-//- (NSString *)subtitle {
-//    return _subtitle;
-//}
+} 
 
 - (CLLocationCoordinate2D)coordinate {
     return _coordinate;

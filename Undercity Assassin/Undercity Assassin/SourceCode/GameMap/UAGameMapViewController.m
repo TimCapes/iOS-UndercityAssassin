@@ -56,6 +56,7 @@
     [self.view setBackgroundColor:[UIColor blackColor]];
     // Do any additional setup after loading the view from its nib.
 }
+
 - (void) setupMap {
     
     self.gameMap.delegate = self;
