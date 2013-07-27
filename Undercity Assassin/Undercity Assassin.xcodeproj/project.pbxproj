@@ -32,6 +32,9 @@
 		ACAA5FE717A45D7F00343E4D /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FE217A45D7F00343E4D /* IIWrapController.m */; };
 		ACAA5FE817A45D7F00343E4D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FE317A45D7F00343E4D /* README.md */; };
 		ACAA5FEC17A45DC400343E4D /* UATarget.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FEB17A45DC400343E4D /* UATarget.m */; };
+		ACAA5FF317A4619C00343E4D /* UAStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FF117A4619C00343E4D /* UAStartViewController.m */; };
+		ACAA5FF417A4619C00343E4D /* UAStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FF217A4619C00343E4D /* UAStartViewController.xib */; };
+		ACAA5FF617A468F100343E4D /* image_city_skyline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FF517A468F100343E4D /* image_city_skyline@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,10 @@
 		ACAA5FE317A45D7F00343E4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		ACAA5FEA17A45DC400343E4D /* UATarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UATarget.h; sourceTree = "<group>"; };
 		ACAA5FEB17A45DC400343E4D /* UATarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UATarget.m; sourceTree = "<group>"; };
+		ACAA5FF017A4619C00343E4D /* UAStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAStartViewController.h; sourceTree = "<group>"; };
+		ACAA5FF117A4619C00343E4D /* UAStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAStartViewController.m; sourceTree = "<group>"; };
+		ACAA5FF217A4619C00343E4D /* UAStartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAStartViewController.xib; sourceTree = "<group>"; };
+		ACAA5FF517A468F100343E4D /* image_city_skyline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_city_skyline@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +162,7 @@
 				ACAA5FD817A45D7F00343E4D /* SupportingClasses */,
 				ACAA5FD217A4541400343E4D /* GameOptions */,
 				ACAA5FC817A44EFC00343E4D /* GameMap */,
+				ACAA5FEF17A4617600343E4D /* StartScreen */,
 			);
 			path = SourceCode;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				ACAA5FD017A4532800343E4D /* icon_menu@2x.png */,
+				ACAA5FF517A468F100343E4D /* image_city_skyline@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -244,6 +253,16 @@
 			path = MapAnnotations;
 			sourceTree = "<group>";
 		};
+		ACAA5FEF17A4617600343E4D /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FF017A4619C00343E4D /* UAStartViewController.h */,
+				ACAA5FF117A4619C00343E4D /* UAStartViewController.m */,
+				ACAA5FF217A4619C00343E4D /* UAStartViewController.xib */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -304,6 +323,8 @@
 				ACAA5FD117A4532800343E4D /* icon_menu@2x.png in Resources */,
 				ACAA5FD717A4542A00343E4D /* UAGameOptionsViewController.xib in Resources */,
 				ACAA5FE817A45D7F00343E4D /* README.md in Resources */,
+				ACAA5FF417A4619C00343E4D /* UAStartViewController.xib in Resources */,
+				ACAA5FF617A468F100343E4D /* image_city_skyline@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +344,7 @@
 				ACAA5FE617A45D7F00343E4D /* IIViewDeckController.m in Sources */,
 				ACAA5FE717A45D7F00343E4D /* IIWrapController.m in Sources */,
 				ACAA5FEC17A45DC400343E4D /* UATarget.m in Sources */,
+				ACAA5FF317A4619C00343E4D /* UAStartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +469,7 @@
 				ACAA5FAF17A44AF800343E4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -79,7 +79,6 @@
     [self.gameMap addAnnotation:target];
     [self.gameMap selectAnnotation:target animated:NO];
 
-
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation

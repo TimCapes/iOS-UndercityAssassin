@@ -7,9 +7,7 @@
 //
 
 #import "UAAppDelegate.h"
-#import "UAGameMapViewController.h"
-#import "UAGameOptionsViewController.h"
-
+#import "UAStartViewController.h"
 @implementation UAAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -22,19 +20,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    UAGameMapViewController *mapView = [[UAGameMapViewController alloc] initWithNibName:@"UAGameMapViewController" bundle: [NSBundle mainBundle]];
+    UAStartViewController *start = [[UAStartViewController alloc] initWithNibName:@"UAStartViewController" bundle:[NSBundle mainBundle]];
+    self.navigationController = [self makeNavigationControllerWithViewController:start];
     
-    self.navigationController = [self makeNavigationControllerWithViewController:mapView];
-    self.navigationController.navigationBarHidden = YES;
-    
-    UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
-    
-     IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController leftViewController:gameOptions];
-    deckViewController.centerhiddenInteractivity =IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing;
-    
-
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = deckViewController;
+    self.window.rootViewController = start;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

@@ -20,5 +20,6 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (UINavigationController *) makeNavigationControllerWithViewController: (UIViewController *) viewController;
 
 @end
