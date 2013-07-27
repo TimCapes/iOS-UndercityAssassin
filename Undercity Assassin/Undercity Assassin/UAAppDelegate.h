@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IIViewDeckController.h"
 
 @interface UAAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -15,6 +16,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (retain, nonatomic) UINavigationController *navigationController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

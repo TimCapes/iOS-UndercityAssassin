@@ -26,6 +26,11 @@
 		ACAA5FC217A44CE200343E4D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA5FC117A44CE200343E4D /* CoreLocation.framework */; };
 		ACAA5FC417A44D0E00343E4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA5FC317A44D0E00343E4D /* QuartzCore.framework */; };
 		ACAA5FC617A44D1900343E4D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA5FC517A44D1900343E4D /* MapKit.framework */; };
+		ACAA5FCC17A44F1D00343E4D /* UAGameMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FCA17A44F1D00343E4D /* UAGameMapViewController.m */; };
+		ACAA5FCD17A44F1D00343E4D /* UAGameMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FCB17A44F1D00343E4D /* UAGameMapViewController.xib */; };
+		ACAA5FD117A4532800343E4D /* icon_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FD017A4532800343E4D /* icon_menu@2x.png */; };
+		ACAA5FD617A4542A00343E4D /* UAGameOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FD417A4542A00343E4D /* UAGameOptionsViewController.m */; };
+		ACAA5FD717A4542A00343E4D /* UAGameOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FD517A4542A00343E4D /* UAGameOptionsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +60,13 @@
 		ACAA5FC117A44CE200343E4D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ACAA5FC317A44D0E00343E4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ACAA5FC517A44D1900343E4D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		ACAA5FC917A44F1D00343E4D /* UAGameMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGameMapViewController.h; sourceTree = "<group>"; };
+		ACAA5FCA17A44F1D00343E4D /* UAGameMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGameMapViewController.m; sourceTree = "<group>"; };
+		ACAA5FCB17A44F1D00343E4D /* UAGameMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAGameMapViewController.xib; sourceTree = "<group>"; };
+		ACAA5FD017A4532800343E4D /* icon_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_menu@2x.png"; sourceTree = "<group>"; };
+		ACAA5FD317A4542A00343E4D /* UAGameOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGameOptionsViewController.h; sourceTree = "<group>"; };
+		ACAA5FD417A4542A00343E4D /* UAGameOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGameOptionsViewController.m; sourceTree = "<group>"; };
+		ACAA5FD517A4542A00343E4D /* UAGameOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAGameOptionsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +125,8 @@
 				ACAA5F9F17A44AF700343E4D /* UAAppDelegate.h */,
 				ACAA5FA017A44AF700343E4D /* UAAppDelegate.m */,
 				ACAA5FA817A44AF800343E4D /* Undercity_Assassin.xcdatamodeld */,
+				ACAA5FCE17A4532800343E4D /* Assets */,
+				ACAA5FC717A44EFC00343E4D /* SourceCode */,
 				ACAA5FB017A44BE700343E4D /* SupportingClasses */,
 				ACAA5F9717A44AF700343E4D /* Supporting Files */,
 			);
@@ -172,6 +186,51 @@
 			path = FacebookSDK;
 			sourceTree = "<group>";
 		};
+		ACAA5FC717A44EFC00343E4D /* SourceCode */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FD217A4541400343E4D /* GameOptions */,
+				ACAA5FC817A44EFC00343E4D /* GameMap */,
+			);
+			path = SourceCode;
+			sourceTree = "<group>";
+		};
+		ACAA5FC817A44EFC00343E4D /* GameMap */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FC917A44F1D00343E4D /* UAGameMapViewController.h */,
+				ACAA5FCA17A44F1D00343E4D /* UAGameMapViewController.m */,
+				ACAA5FCB17A44F1D00343E4D /* UAGameMapViewController.xib */,
+			);
+			path = GameMap;
+			sourceTree = "<group>";
+		};
+		ACAA5FCE17A4532800343E4D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FCF17A4532800343E4D /* Images */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		ACAA5FCF17A4532800343E4D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FD017A4532800343E4D /* icon_menu@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		ACAA5FD217A4541400343E4D /* GameOptions */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA5FD317A4542A00343E4D /* UAGameOptionsViewController.h */,
+				ACAA5FD417A4542A00343E4D /* UAGameOptionsViewController.m */,
+				ACAA5FD517A4542A00343E4D /* UAGameOptionsViewController.xib */,
+			);
+			path = GameOptions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -229,6 +288,9 @@
 				ACAA5FA517A44AF700343E4D /* Default@2x.png in Resources */,
 				ACAA5FA717A44AF700343E4D /* Default-568h@2x.png in Resources */,
 				ACAA5FBD17A44BE700343E4D /* README.md in Resources */,
+				ACAA5FCD17A44F1D00343E4D /* UAGameMapViewController.xib in Resources */,
+				ACAA5FD117A4532800343E4D /* icon_menu@2x.png in Resources */,
+				ACAA5FD717A4542A00343E4D /* UAGameOptionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +307,8 @@
 				ACAA5FBA17A44BE700343E4D /* IISideController.m in Sources */,
 				ACAA5FBB17A44BE700343E4D /* IIViewDeckController.m in Sources */,
 				ACAA5FBC17A44BE700343E4D /* IIWrapController.m in Sources */,
+				ACAA5FCC17A44F1D00343E4D /* UAGameMapViewController.m in Sources */,
+				ACAA5FD617A4542A00343E4D /* UAGameOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

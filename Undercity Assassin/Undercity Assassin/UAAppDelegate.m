@@ -7,17 +7,30 @@
 //
 
 #import "UAAppDelegate.h"
+#import "UAGameMapViewController.h"
+#import "UAGameOptionsViewController.h"
 
 @implementation UAAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize navigationController = _navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    UAGameMapViewController *mapView = [[UAGameMapViewController alloc] initWithNibName:@"UAGameMapViewController" bundle: [NSBundle mainBundle]];
+    
+    self.navigationController = [self makeNavigationControllerWithViewController:mapView];
+    
+    UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
+     IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController leftViewController:gameOptions];
+    
+    self.navigationController.navigationBarHidden = YES;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = deckViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -144,6 +157,12 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (UINavigationController *) makeNavigationControllerWithViewController: (UIViewController *) viewController {
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: viewController];
+    [navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    return navigationController;
 }
 
 @end
