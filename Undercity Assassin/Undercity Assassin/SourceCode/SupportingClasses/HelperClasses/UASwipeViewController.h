@@ -10,5 +10,6 @@
 
 @interface UASwipeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *swipeImage;
+@property (weak, nonatomic) IBOutlet UIButton *button;
 - (id)initWithPageNumber:(NSUInteger)page;
 @end

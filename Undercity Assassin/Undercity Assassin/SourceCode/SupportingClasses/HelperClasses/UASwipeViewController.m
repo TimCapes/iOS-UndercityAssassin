@@ -10,7 +10,6 @@
 
 @interface UASwipeViewController (){
     int pageNumber;
-    __weak IBOutlet UIButton *button;
     __weak IBOutlet UILabel *explainerText;
     __weak IBOutlet UILabel *scrollText;
 }
@@ -47,7 +46,7 @@
         pageNumber = page;
     }
     if (page==0) {
-        [self.view sendSubviewToBack:button];
+        [self.view sendSubviewToBack:self.button];
         [self.view sendSubviewToBack:explainerText];
     } else if(page==1) {
         [self.view sendSubviewToBack:scrollText];

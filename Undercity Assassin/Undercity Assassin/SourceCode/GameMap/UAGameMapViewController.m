@@ -14,7 +14,7 @@
 
 @interface UAGameMapViewController () <MKMapViewDelegate>
 
-@property (weak, nonatomic) IBOutlet MKMapView *gameMap;
+@property (strong, nonatomic) IBOutlet MKMapView *gameMap;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property CLLocationCoordinate2D opponent;
@@ -45,6 +45,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"view Did Load");
     [super viewDidLoad];
     //TEMPORARY CODE FOR DEMO: SAMPLE OPPONENT AT BNOTIONS
     self.opponent = CLLocationCoordinate2DMake(43.649897,-79.370374);
@@ -58,10 +59,10 @@
 }
 
 - (void) setupMap {
-    
+    NSLog(@"Setup Map Called");
     self.gameMap.delegate = self;
     self.gameMap.showsUserLocation = YES;
-    
+    self.gameMap.mapType = MKMapTypeSatellite;
     MKCoordinateRegion region;
     region.center = self.opponent;
 
@@ -83,9 +84,9 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    NSLog(@"DidUpdateUserLocation called");
     [self.geocoder reverseGeocodeLocation:self.gameMap.userLocation.location completionHandler:^(NSArray *placemarks, NSError *error) {
-        //self.placemark = [placemarks objectAtIndex:0];
-        //Rezooming Code??
+        [self setupMap];
     }];
 }
 

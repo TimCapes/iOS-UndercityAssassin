@@ -26,7 +26,6 @@
 		ACAA5FD117A4532800343E4D /* icon_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FD017A4532800343E4D /* icon_menu@2x.png */; };
 		ACAA5FD617A4542A00343E4D /* UAGameOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FD417A4542A00343E4D /* UAGameOptionsViewController.m */; };
 		ACAA5FD717A4542A00343E4D /* UAGameOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FD517A4542A00343E4D /* UAGameOptionsViewController.xib */; };
-		ACAA5FE417A45D7F00343E4D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA5FDB17A45D7F00343E4D /* FacebookSDK.framework */; };
 		ACAA5FE517A45D7F00343E4D /* IISideController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FDE17A45D7F00343E4D /* IISideController.m */; };
 		ACAA5FE617A45D7F00343E4D /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FE017A45D7F00343E4D /* IIViewDeckController.m */; };
 		ACAA5FE717A45D7F00343E4D /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FE217A45D7F00343E4D /* IIWrapController.m */; };
@@ -38,6 +37,10 @@
 		ACAA5FFB17A46CE000343E4D /* UASwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FF917A46CE000343E4D /* UASwipeViewController.m */; };
 		ACAA5FFC17A46CE000343E4D /* UASwipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */; };
 		ACAA5FFE17A46EB400343E4D /* image_facebook_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FFD17A46EB400343E4D /* image_facebook_background@2x.png */; };
+		ACAA611C17A47B0D00343E4D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA600017A47B0C00343E4D /* FacebookSDK.framework */; };
+		ACAA61E617A47B5A00343E4D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E517A47B5A00343E4D /* Accounts.framework */; };
+		ACAA61E817A47B6000343E4D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E717A47B5F00343E4D /* AdSupport.framework */; };
+		ACAA61EA17A47B6E00343E4D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E917A47B6E00343E4D /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +69,6 @@
 		ACAA5FD317A4542A00343E4D /* UAGameOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGameOptionsViewController.h; sourceTree = "<group>"; };
 		ACAA5FD417A4542A00343E4D /* UAGameOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGameOptionsViewController.m; sourceTree = "<group>"; };
 		ACAA5FD517A4542A00343E4D /* UAGameOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAGameOptionsViewController.xib; sourceTree = "<group>"; };
-		ACAA5FDB17A45D7F00343E4D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		ACAA5FDD17A45D7F00343E4D /* IISideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISideController.h; sourceTree = "<group>"; };
 		ACAA5FDE17A45D7F00343E4D /* IISideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISideController.m; sourceTree = "<group>"; };
 		ACAA5FDF17A45D7F00343E4D /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
@@ -84,6 +86,10 @@
 		ACAA5FF917A46CE000343E4D /* UASwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UASwipeViewController.m; sourceTree = "<group>"; };
 		ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UASwipeViewController.xib; sourceTree = "<group>"; };
 		ACAA5FFD17A46EB400343E4D /* image_facebook_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_facebook_background@2x.png"; sourceTree = "<group>"; };
+		ACAA600017A47B0C00343E4D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		ACAA61E517A47B5A00343E4D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		ACAA61E717A47B5F00343E4D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		ACAA61E917A47B6E00343E4D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACAA61EA17A47B6E00343E4D /* AddressBook.framework in Frameworks */,
+				ACAA61E817A47B6000343E4D /* AdSupport.framework in Frameworks */,
+				ACAA61E617A47B5A00343E4D /* Accounts.framework in Frameworks */,
 				ACAA5FC617A44D1900343E4D /* MapKit.framework in Frameworks */,
 				ACAA5FC417A44D0E00343E4D /* QuartzCore.framework in Frameworks */,
 				ACAA5FC217A44CE200343E4D /* CoreLocation.framework in Frameworks */,
@@ -98,7 +107,7 @@
 				ACAA5F9117A44AF700343E4D /* Foundation.framework in Frameworks */,
 				ACAA5F9317A44AF700343E4D /* CoreGraphics.framework in Frameworks */,
 				ACAA5F9517A44AF700343E4D /* CoreData.framework in Frameworks */,
-				ACAA5FE417A45D7F00343E4D /* FacebookSDK.framework in Frameworks */,
+				ACAA611C17A47B0D00343E4D /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,9 @@
 		ACAA5F8D17A44AF700343E4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACAA61E917A47B6E00343E4D /* AddressBook.framework */,
+				ACAA61E717A47B5F00343E4D /* AdSupport.framework */,
+				ACAA61E517A47B5A00343E4D /* Accounts.framework */,
 				ACAA5FC517A44D1900343E4D /* MapKit.framework */,
 				ACAA5FC317A44D0E00343E4D /* QuartzCore.framework */,
 				ACAA5FC117A44CE200343E4D /* CoreLocation.framework */,
@@ -225,18 +237,10 @@
 		ACAA5FD917A45D7F00343E4D /* VendorClasses */ = {
 			isa = PBXGroup;
 			children = (
-				ACAA5FDA17A45D7F00343E4D /* FacebookSDK */,
+				ACAA5FFF17A47B0C00343E4D /* FacebookSDK */,
 				ACAA5FDC17A45D7F00343E4D /* IIViewDeck */,
 			);
 			path = VendorClasses;
-			sourceTree = "<group>";
-		};
-		ACAA5FDA17A45D7F00343E4D /* FacebookSDK */ = {
-			isa = PBXGroup;
-			children = (
-				ACAA5FDB17A45D7F00343E4D /* FacebookSDK.framework */,
-			);
-			path = FacebookSDK;
 			sourceTree = "<group>";
 		};
 		ACAA5FDC17A45D7F00343E4D /* IIViewDeck */ = {
@@ -282,6 +286,14 @@
 			path = HelperClasses;
 			sourceTree = "<group>";
 		};
+		ACAA5FFF17A47B0C00343E4D /* FacebookSDK */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA600017A47B0C00343E4D /* FacebookSDK.framework */,
+			);
+			path = FacebookSDK;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,6 +330,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				he,
 			);
 			mainGroup = ACAA5F8217A44AF700343E4D;
 			productRefGroup = ACAA5F8C17A44AF700343E4D /* Products */;
@@ -409,7 +422,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -433,7 +446,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

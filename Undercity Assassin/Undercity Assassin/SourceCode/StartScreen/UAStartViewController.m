@@ -12,7 +12,7 @@
 #import "IIViewDeckController.h"
 #import "UAAppDelegate.h"
 #import "UASwipeViewController.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 @interface UAStartViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -57,7 +57,7 @@
 }
 - (void) setupScrollView {
     self.scrollView.pagingEnabled=YES;
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, (self.view.frame.size.height-88)*2);//Don't forget to subtract size of status bar
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
 }
@@ -91,33 +91,66 @@
         }
         else if (page==1){
             imageName = @"image_facebook_background";
+            [controller.button addTarget:self action:@selector(loginWithFacebook) forControlEvents:UIControlEventTouchUpInside];
         }
+
         controller.swipeImage.image = [UIImage imageNamed:imageName];
     }
 }
 
 
-- (void)centerScrollViewContents {
-    CGSize boundsSize = self.scrollView.bounds.size;
-    CGRect contentsFrame = self.imageView.frame;
-    
-    if (contentsFrame.size.width < boundsSize.width) {
-        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
-    } else {
-        contentsFrame.origin.x = 0.0f;
-    }
-    
-    if (contentsFrame.size.height < boundsSize.height) {
-        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
-    } else {
-        contentsFrame.origin.y = 0.0f;
-    }
-    
-    self.imageView.frame = contentsFrame;
+- (void) loginWithFacebook {
+    NSLog(@"Attempting login with facebook");
+    [self openSession];
+    [self signedIn];
 }
 
+- (void)sessionStateChanged:(FBSession *)session
+                      state:(FBSessionState) state
+                      error:(NSError *)error
+{
+    NSLog(@"In session state changed");
+    
+    switch (state) {
+        case FBSessionStateOpen: {
 
+        }
+            break;
+        case FBSessionStateClosed:
+        case FBSessionStateClosedLoginFailed:
+            // Once the user has logged in, we want them to
+            // be looking at the root view.
+            
+            [FBSession.activeSession closeAndClearTokenInformation];
+            break;
+        default:
+            break;
+    }
+    
+    if (error) {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:error.localizedDescription
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
 
+- (void)openSession
+{
+    NSLog(@"Adding session");
+    [FBSession openActiveSessionWithReadPermissions:nil
+                                       allowLoginUI:YES
+                                  completionHandler:
+     ^(FBSession *session,
+       FBSessionState state, NSError *error) {
+         NSLog(@"Inside completion handler");
+         [self sessionStateChanged:session state:state error:error];
+     }];
+    
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -149,8 +182,8 @@
     
     UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
     
-    IIViewDeckController *deckViewController = [[IIViewDeckController alloc] initWithCenterViewController:self.navigationController leftViewController:gameOptions];
-    deckViewController.centerhiddenInteractivity =IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing;
-    appDelegate.window.rootViewController = deckViewController;
+    IIViewDeckController *deckViewController = (IIViewDeckController *) appDelegate.window.rootViewController;
+    deckViewController.leftController = gameOptions;
+    deckViewController.centerController = appDelegate.navigationController;
 }
 @end

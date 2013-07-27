@@ -8,6 +8,10 @@
 
 #import "UAAppDelegate.h"
 #import "UAStartViewController.h"
+#import "UAGameMapViewController.h"
+#import "UAGameOptionsViewController.h"
+#import "IIViewDeckController.h"
+#import <FacebookSDK/FacebookSDK.h>
 @implementation UAAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -18,14 +22,31 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    
-    UAStartViewController *start = [[UAStartViewController alloc] initWithNibName:@"UAStartViewController" bundle:[NSBundle mainBundle]];
-    self.navigationController = [self makeNavigationControllerWithViewController:start];
-    
-    self.window.rootViewController = start;
+    IIViewDeckController *deckViewController = [[IIViewDeckController alloc] init];
+    deckViewController.centerhiddenInteractivity =IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing;
+    deckViewController.leftSize = 70;
+    self.window.rootViewController = deckViewController;
+    if (FBSession.activeSession.state == FBSessionStateOpen || FBSessionStateCreatedTokenLoaded || FBSessionStateCreated) {
+        // Yes, so just open the session (this won't display any UX).
+        NSLog(@"Got here");
+        
+        UAGameMapViewController *mapView = [[UAGameMapViewController alloc] initWithNibName:@"UAGameMapViewController" bundle: [NSBundle mainBundle]];
+        self.navigationController = [self makeNavigationControllerWithViewController:mapView];
+        self.navigationController.navigationBarHidden = YES;
+        
+        UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
+        deckViewController.centerController = self.navigationController;
+        deckViewController.leftController = gameOptions;
+      
+    } else {
+        UAStartViewController *start = [[UAStartViewController alloc] initWithNibName:@"UAStartViewController" bundle:[NSBundle mainBundle]];
+        self.navigationController = [self makeNavigationControllerWithViewController:start];
+        self.navigationController.navigationBarHidden = YES;
+        deckViewController.centerController= self.navigationController;
+    }
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    NSLog(@"Made key and Visible");
     return YES;
 }
 
