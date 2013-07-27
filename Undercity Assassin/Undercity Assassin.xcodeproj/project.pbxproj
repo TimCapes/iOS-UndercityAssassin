@@ -41,6 +41,8 @@
 		ACAA61E617A47B5A00343E4D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E517A47B5A00343E4D /* Accounts.framework */; };
 		ACAA61E817A47B6000343E4D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E717A47B5F00343E4D /* AdSupport.framework */; };
 		ACAA61EA17A47B6E00343E4D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E917A47B6E00343E4D /* AddressBook.framework */; };
+		ACAA61EF17A4900800343E4D /* UAGameCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA61ED17A4900800343E4D /* UAGameCreationViewController.m */; };
+		ACAA61F017A4900800343E4D /* UAGameCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA61EE17A4900800343E4D /* UAGameCreationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,9 @@
 		ACAA61E517A47B5A00343E4D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		ACAA61E717A47B5F00343E4D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		ACAA61E917A47B6E00343E4D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		ACAA61EC17A4900800343E4D /* UAGameCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGameCreationViewController.h; sourceTree = "<group>"; };
+		ACAA61ED17A4900800343E4D /* UAGameCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGameCreationViewController.m; sourceTree = "<group>"; };
+		ACAA61EE17A4900800343E4D /* UAGameCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAGameCreationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +183,7 @@
 		ACAA5FC717A44EFC00343E4D /* SourceCode */ = {
 			isa = PBXGroup;
 			children = (
+				ACAA61EB17A48FEA00343E4D /* GameCreation */,
 				ACAA5FD817A45D7F00343E4D /* SupportingClasses */,
 				ACAA5FD217A4541400343E4D /* GameOptions */,
 				ACAA5FC817A44EFC00343E4D /* GameMap */,
@@ -294,6 +300,16 @@
 			path = FacebookSDK;
 			sourceTree = "<group>";
 		};
+		ACAA61EB17A48FEA00343E4D /* GameCreation */ = {
+			isa = PBXGroup;
+			children = (
+				ACAA61EC17A4900800343E4D /* UAGameCreationViewController.h */,
+				ACAA61ED17A4900800343E4D /* UAGameCreationViewController.m */,
+				ACAA61EE17A4900800343E4D /* UAGameCreationViewController.xib */,
+			);
+			path = GameCreation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -359,6 +375,7 @@
 				ACAA5FF617A468F100343E4D /* image_city_skyline@2x.png in Resources */,
 				ACAA5FFC17A46CE000343E4D /* UASwipeViewController.xib in Resources */,
 				ACAA5FFE17A46EB400343E4D /* image_facebook_background@2x.png in Resources */,
+				ACAA61F017A4900800343E4D /* UAGameCreationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +397,7 @@
 				ACAA5FEC17A45DC400343E4D /* UATarget.m in Sources */,
 				ACAA5FF317A4619C00343E4D /* UAStartViewController.m in Sources */,
 				ACAA5FFB17A46CE000343E4D /* UASwipeViewController.m in Sources */,
+				ACAA61EF17A4900800343E4D /* UAGameCreationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

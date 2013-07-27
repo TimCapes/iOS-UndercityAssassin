@@ -7,8 +7,7 @@
 //
 
 #import "UAStartViewController.h"
-#import "UAGameMapViewController.h"
-#import "UAGameOptionsViewController.h"
+#import "UAGameCreationViewController.h"
 #import "IIViewDeckController.h"
 #import "UAAppDelegate.h"
 #import "UASwipeViewController.h"
@@ -175,15 +174,12 @@
 - (IBAction) signedIn {
     UAAppDelegate *appDelegate = (UAAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    UAGameMapViewController *mapView = [[UAGameMapViewController alloc] initWithNibName:@"UAGameMapViewController" bundle: [NSBundle mainBundle]];
+    UAGameCreationViewController *gameCreation = [[UAGameCreationViewController alloc] initWithNibName:@"UAGameCreationViewController" bundle: [NSBundle mainBundle]];
     
-    appDelegate.navigationController = [appDelegate makeNavigationControllerWithViewController:mapView];
+    appDelegate.navigationController = [appDelegate makeNavigationControllerWithViewController:gameCreation];
     appDelegate.navigationController.navigationBarHidden = YES;
     
-    UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
-    
     IIViewDeckController *deckViewController = (IIViewDeckController *) appDelegate.window.rootViewController;
-    deckViewController.leftController = gameOptions;
     deckViewController.centerController = appDelegate.navigationController;
 }
 @end

@@ -10,6 +10,7 @@
 #import "UAStartViewController.h"
 #import "UAGameMapViewController.h"
 #import "UAGameOptionsViewController.h"
+#import "UAGameCreationViewController.h"
 #import "IIViewDeckController.h"
 #import <FacebookSDK/FacebookSDK.h>
 @implementation UAAppDelegate
@@ -26,17 +27,23 @@
     deckViewController.centerhiddenInteractivity =IIViewDeckCenterHiddenNotUserInteractiveWithTapToCloseBouncing;
     deckViewController.leftSize = 70;
     self.window.rootViewController = deckViewController;
+    
     if (FBSession.activeSession.state == FBSessionStateOpen || FBSessionStateCreatedTokenLoaded || FBSessionStateCreated) {
         // Yes, so just open the session (this won't display any UX).
         NSLog(@"Got here");
-        
-        UAGameMapViewController *mapView = [[UAGameMapViewController alloc] initWithNibName:@"UAGameMapViewController" bundle: [NSBundle mainBundle]];
-        self.navigationController = [self makeNavigationControllerWithViewController:mapView];
-        self.navigationController.navigationBarHidden = YES;
-        
-        UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
+        //if (inGame==YES) {
+//        UAGameMapViewController *mapView = [[UAGameMapViewController alloc] initWithNibName:@"UAGameMapViewController" bundle: [NSBundle mainBundle]];
+//        self.navigationController = [self makeNavigationControllerWithViewController:mapView];
+//        self.navigationController.navigationBarHidden = YES;
+//        
+//        UAGameOptionsViewController *gameOptions = [[UAGameOptionsViewController alloc] initWithNibName:@"UAGameOptionsViewController" bundle:[NSBundle mainBundle]];
+//        deckViewController.centerController = self.navigationController;
+//        deckViewController.leftController = gameOptions;
+// } else {
+        UAGameCreationViewController *gameCreation = [[UAGameCreationViewController alloc] initWithNibName:@"UAGameCreationViewController" bundle:[NSBundle mainBundle]];
+        self.navigationController = [self makeNavigationControllerWithViewController:gameCreation];
         deckViewController.centerController = self.navigationController;
-        deckViewController.leftController = gameOptions;
+        self.navigationController.navigationBarHidden = YES;
       
     } else {
         UAStartViewController *start = [[UAStartViewController alloc] initWithNibName:@"UAStartViewController" bundle:[NSBundle mainBundle]];
