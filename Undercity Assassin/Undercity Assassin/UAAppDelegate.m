@@ -12,13 +12,15 @@
 #import "UAGameOptionsViewController.h"
 #import "UAGameCreationViewController.h"
 #import "IIViewDeckController.h"
-#import <FacebookSDK/FacebookSDK.h>
+
 @implementation UAAppDelegate
 
+@synthesize window = _window;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize navigationController = _navigationController;
+@synthesize session=_session;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,7 +30,7 @@
     deckViewController.leftSize = 70;
     self.window.rootViewController = deckViewController;
     
-    if (FBSession.activeSession.state == FBSessionStateOpen || FBSessionStateCreatedTokenLoaded || FBSessionStateCreated) {
+    if (NO){ //FBSession.activeSession.state == FBSessionStateOpen || FBSessionStateCreatedTokenLoaded || FBSessionStateCreated) {
         // Yes, so just open the session (this won't display any UX).
         NSLog(@"Got here");
         //if (inGame==YES) {
@@ -77,12 +79,24 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBAppEvents activateApp];
+    
+    /*
+     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+     */
+    
+    // FBSample logic
+    // We need to properly handle activation of the application with regards to SSO
+    //  (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
+    [FBAppCall handleDidBecomeActiveWithSession:self.session];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [self.session close];
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+
 }
 
 - (void)saveContext
@@ -179,6 +193,17 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:self.session];
+}
+
 
 - (UINavigationController *) makeNavigationControllerWithViewController: (UIViewController *) viewController {
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: viewController];

@@ -40,6 +40,25 @@
     [super viewDidLoad];
     [self setupNumberOfPages];
     [self setupScrollView];
+    UAAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    if (!appDelegate.session.isOpen) {
+        // create a fresh session object
+        appDelegate.session = [[FBSession alloc] init];
+        
+        // if we don't have a cached token, a call to open here would cause UX for login to
+        // occur; we don't want that to happen unless the user clicks the login button, and so
+        // we check here to make sure we have a token before calling open
+        if (appDelegate.session.state == FBSessionStateCreatedTokenLoaded) {
+            // even though we had a cached token, we need to login to make the session usable
+            [appDelegate.session openWithCompletionHandler:^(FBSession *session,
+                                                             FBSessionState status,
+                                                             NSError *error) {
+                // we recurse here, in order to update buttons and labels
+                //[self updateView];
+            }];
+        }
+    }
+
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -101,8 +120,8 @@
 - (void) loginWithFacebook {
     NSLog(@"Attempting login with facebook");
     [self openSession];
-    [self signedIn];
 }
+
 
 - (void)sessionStateChanged:(FBSession *)session
                       state:(FBSessionState) state
@@ -139,17 +158,35 @@
 
 - (void)openSession
 {
-    NSLog(@"Adding session");
-    [FBSession openActiveSessionWithReadPermissions:nil
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session,
-       FBSessionState state, NSError *error) {
-         NSLog(@"Inside completion handler");
-         [self sessionStateChanged:session state:state error:error];
-     }];
-    
+    NSLog(@"Called open Session");
+    UAAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    if (appDelegate.session.isOpen) {
+        // if a user logs out explicitly, we delete any cached token information, and next
+        // time they run the applicaiton they will be presented with log in UX again; most
+        // users will simply close the app or switch away, without logging out; this will
+        // cause the implicit cached-token login to occur on next launch of the application
+        NSLog(@"Close and clear");
+        [appDelegate.session closeAndClearTokenInformation];
+        
+    } else {
+        NSLog(@"No open session");
+        if (appDelegate.session.state != FBSessionStateCreated) {
+            // Create a new, logged out session.
+            appDelegate.session = [[FBSession alloc] init];
+            NSLog(@"Created a session");
+        }
+        // if the session isn't open, let's open it now and present the login UX to the user
+        NSLog(@"Completion handler");
+        [appDelegate.session openWithCompletionHandler:^(FBSession *session,
+                                                     FBSessionState status,
+                                                     NSError *error) {
+            // and here we make sure to update our UX according to the new session state
+            NSLog(@"Calling signedIn");
+            [self signedIn];
+        }];
+    }
 }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -171,7 +208,7 @@
 }
 
 //This code will eventually be pushed back. A fully interactive start-menu is needed post FB sign-in.
-- (IBAction) signedIn {
+- (void) signedIn {
     UAAppDelegate *appDelegate = (UAAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     UAGameCreationViewController *gameCreation = [[UAGameCreationViewController alloc] initWithNibName:@"UAGameCreationViewController" bundle: [NSBundle mainBundle]];
