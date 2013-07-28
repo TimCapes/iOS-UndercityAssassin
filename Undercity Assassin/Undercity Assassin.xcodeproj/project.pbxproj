@@ -37,12 +37,15 @@
 		ACAA5FFB17A46CE000343E4D /* UASwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA5FF917A46CE000343E4D /* UASwipeViewController.m */; };
 		ACAA5FFC17A46CE000343E4D /* UASwipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */; };
 		ACAA5FFE17A46EB400343E4D /* image_facebook_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAA5FFD17A46EB400343E4D /* image_facebook_background@2x.png */; };
-		ACAA611C17A47B0D00343E4D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA600017A47B0C00343E4D /* FacebookSDK.framework */; };
 		ACAA61E617A47B5A00343E4D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E517A47B5A00343E4D /* Accounts.framework */; };
 		ACAA61E817A47B6000343E4D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E717A47B5F00343E4D /* AdSupport.framework */; };
 		ACAA61EA17A47B6E00343E4D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAA61E917A47B6E00343E4D /* AddressBook.framework */; };
 		ACAA61EF17A4900800343E4D /* UAGameCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAA61ED17A4900800343E4D /* UAGameCreationViewController.m */; };
 		ACAA61F017A4900800343E4D /* UAGameCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACAA61EE17A4900800343E4D /* UAGameCreationViewController.xib */; };
+		ACB212DE17A5A6AA0058D8D8 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB212DD17A5A6AA0058D8D8 /* FacebookSDK.framework */; };
+		ACBA660417A5A063003A5C61 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBA660317A5A063003A5C61 /* libsqlite3.dylib */; };
+		ACBA660617A5A150003A5C61 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBA660517A5A150003A5C61 /* Social.framework */; };
+		ACBA660817A5A1DA003A5C61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBA660717A5A1DA003A5C61 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,13 +91,16 @@
 		ACAA5FF917A46CE000343E4D /* UASwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UASwipeViewController.m; sourceTree = "<group>"; };
 		ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UASwipeViewController.xib; sourceTree = "<group>"; };
 		ACAA5FFD17A46EB400343E4D /* image_facebook_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_facebook_background@2x.png"; sourceTree = "<group>"; };
-		ACAA600017A47B0C00343E4D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		ACAA61E517A47B5A00343E4D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		ACAA61E717A47B5F00343E4D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		ACAA61E917A47B6E00343E4D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		ACAA61EC17A4900800343E4D /* UAGameCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGameCreationViewController.h; sourceTree = "<group>"; };
 		ACAA61ED17A4900800343E4D /* UAGameCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGameCreationViewController.m; sourceTree = "<group>"; };
 		ACAA61EE17A4900800343E4D /* UAGameCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UAGameCreationViewController.xib; sourceTree = "<group>"; };
+		ACB212DD17A5A6AA0058D8D8 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "Undercity Assassin/SupportingClasses/VendorClasses/FacebookSDK/FacebookSDK.framework"; sourceTree = "<group>"; };
+		ACBA660317A5A063003A5C61 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		ACBA660517A5A150003A5C61 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		ACBA660717A5A1DA003A5C61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB212DE17A5A6AA0058D8D8 /* FacebookSDK.framework in Frameworks */,
+				ACBA660817A5A1DA003A5C61 /* Security.framework in Frameworks */,
+				ACBA660617A5A150003A5C61 /* Social.framework in Frameworks */,
+				ACBA660417A5A063003A5C61 /* libsqlite3.dylib in Frameworks */,
 				ACAA61EA17A47B6E00343E4D /* AddressBook.framework in Frameworks */,
 				ACAA61E817A47B6000343E4D /* AdSupport.framework in Frameworks */,
 				ACAA61E617A47B5A00343E4D /* Accounts.framework in Frameworks */,
@@ -112,7 +122,6 @@
 				ACAA5F9117A44AF700343E4D /* Foundation.framework in Frameworks */,
 				ACAA5F9317A44AF700343E4D /* CoreGraphics.framework in Frameworks */,
 				ACAA5F9517A44AF700343E4D /* CoreData.framework in Frameworks */,
-				ACAA611C17A47B0D00343E4D /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +131,7 @@
 		ACAA5F8217A44AF700343E4D = {
 			isa = PBXGroup;
 			children = (
+				ACB212DD17A5A6AA0058D8D8 /* FacebookSDK.framework */,
 				ACAA5F9617A44AF700343E4D /* Undercity Assassin */,
 				ACAA5F8D17A44AF700343E4D /* Frameworks */,
 				ACAA5F8C17A44AF700343E4D /* Products */,
@@ -139,6 +149,9 @@
 		ACAA5F8D17A44AF700343E4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACBA660717A5A1DA003A5C61 /* Security.framework */,
+				ACBA660517A5A150003A5C61 /* Social.framework */,
+				ACBA660317A5A063003A5C61 /* libsqlite3.dylib */,
 				ACAA61E917A47B6E00343E4D /* AddressBook.framework */,
 				ACAA61E717A47B5F00343E4D /* AdSupport.framework */,
 				ACAA61E517A47B5A00343E4D /* Accounts.framework */,
@@ -243,7 +256,6 @@
 		ACAA5FD917A45D7F00343E4D /* VendorClasses */ = {
 			isa = PBXGroup;
 			children = (
-				ACAA5FFF17A47B0C00343E4D /* FacebookSDK */,
 				ACAA5FDC17A45D7F00343E4D /* IIViewDeck */,
 			);
 			path = VendorClasses;
@@ -290,14 +302,6 @@
 				ACAA5FFA17A46CE000343E4D /* UASwipeViewController.xib */,
 			);
 			path = HelperClasses;
-			sourceTree = "<group>";
-		};
-		ACAA5FFF17A47B0C00343E4D /* FacebookSDK */ = {
-			isa = PBXGroup;
-			children = (
-				ACAA600017A47B0C00343E4D /* FacebookSDK.framework */,
-			);
-			path = FacebookSDK;
 			sourceTree = "<group>";
 		};
 		ACAA61EB17A48FEA00343E4D /* GameCreation */ = {
