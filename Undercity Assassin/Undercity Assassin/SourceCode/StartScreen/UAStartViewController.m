@@ -196,7 +196,24 @@
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+    NSLog(@"Called Scroll View Did Scroll");
+    NSLog(@"Content offset y is %f",scrollView.contentOffset.y);
+    if(scrollView.contentOffset.y > 0 && scrollView.contentOffset.y <= 400.0) {
+        NSLog(@"called blurring percentage");
+        float percent = 1 - (scrollView.contentOffset.y / 400.0);
+        NSLog(@"percentage to blur is %f",percent);
+        ((UASwipeViewController *)self.viewControllers[0]).swipeImage.alpha = percent;
+        ((UASwipeViewController *)self.viewControllers[0]).button.alpha = 0;
+        ((UASwipeViewController *)self.viewControllers[0]).scrollText.alpha=0;
+        ((UASwipeViewController *)self.viewControllers[0]).explainerText.alpha=0;
+    } else if (scrollView.contentOffset.y > 400.0){
+        NSLog(@"Alpha is setting to 0");
+         ((UASwipeViewController *)self.viewControllers[0]).swipeImage.alpha = 0;
+    } else if (scrollView.contentOffset.y <= 0) {
+        NSLog(@"Alpha is setting to 1");
+         ((UASwipeViewController *)self.viewControllers[0]).swipeImage.alpha = 1;
+        ((UASwipeViewController *)self.viewControllers[0]).scrollText.alpha=1;
+    }
 }
 
 - (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate  {
