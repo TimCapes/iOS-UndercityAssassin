@@ -55,9 +55,22 @@
     [self.locationManager startUpdatingLocation];
     [self setupMap];
     [self.view setBackgroundColor:[UIColor blackColor]];
+    [self setupAdminResetPanner];
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void) setupAdminResetPanner {
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(reset)];
+    [panRecognizer setMinimumNumberOfTouches:3];
+    [panRecognizer setMaximumNumberOfTouches:3];
+    [panRecognizer setDelaysTouchesBegan:YES];
+    [[self view] addGestureRecognizer:panRecognizer];
+}
+
+- (void) reset {
+    //TODO:Throw up a RESET SCREEN
+    NSLog(@"Reset Attempted");
+}
 - (void) setupMap {
     NSLog(@"Setup Map Called");
     self.gameMap.delegate = self;

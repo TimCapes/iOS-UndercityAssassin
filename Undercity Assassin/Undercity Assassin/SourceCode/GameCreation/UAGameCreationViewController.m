@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *playerTable;
 @property (weak, nonatomic) IBOutlet UILabel *selectedFriendsView;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundTableCover;
 
 @end
 
@@ -37,6 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1];
+    self.backgroundTableCover.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -51,6 +54,7 @@
     [self setInviteButton:nil];
     [self setPlayerTable:nil];
     [self setSelectedFriendsView:nil];
+    [self setBackgroundTableCover:nil];
     [super viewDidUnload];
 }
 - (IBAction)demo {
