@@ -90,6 +90,9 @@
     }];
 }
 
+- (IBAction)assassinate:(id)sender {
+    //TODO: Check distance and display message with results in a pop-up/modal.  Allow sharing to Facebook.
+}
 
 - (void)didReceiveMemoryWarning
 {

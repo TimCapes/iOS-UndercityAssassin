@@ -30,7 +30,7 @@
     deckViewController.leftSize = 70;
     self.window.rootViewController = deckViewController;
     
-    if (NO){ //FBSession.activeSession.state == FBSessionStateOpen || FBSessionStateCreatedTokenLoaded || FBSessionStateCreated) {
+    if (FBSession.activeSession.state == FBSessionStateOpen || FBSessionStateCreatedTokenLoaded || FBSessionStateCreated) {
         // Yes, so just open the session (this won't display any UX).
         NSLog(@"Got here");
         //if (inGame==YES) {

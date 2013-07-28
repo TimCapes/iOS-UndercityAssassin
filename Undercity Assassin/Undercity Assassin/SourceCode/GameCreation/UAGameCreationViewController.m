@@ -131,11 +131,20 @@
 }
 
 - (void)fillTextBoxAndDismiss:(NSString *)text {
-    //TODO: WebAPI pulling data on invites from cloud and sending invites to cloud to track table of friends and whether they have joined the game.
+    //TODO: WebAPI pulling data on invites from cloud and sending invites to cloud to track table of friends and whether they have joined the game. Also TODO: Post to friends inviting them to game!
     self.selectedFriendsView.text = text;
     
     [self dismissModalViewControllerAnimated:YES];
 }
-
+- (IBAction)startGame:(id)sender {
+    //TODO: Only allow a start with at least two players. Give a pop-up warning if there are players invited who haven't accepted.
+    if ([self shouldStartGame]) {
+        //TODO: Set an ingame flag in core data to avoid this screen and go straight to the app once loaded.
+        
+    }
+}
+-(BOOL) shouldStartGame {
+    return YES;
+}
 
 @end
