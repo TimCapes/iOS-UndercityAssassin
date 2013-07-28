@@ -92,6 +92,23 @@
 
 - (IBAction)assassinate:(id)sender {
     //TODO: Check distance and display message with results in a pop-up/modal.  Allow sharing to Facebook.
+    CLLocation *me = [[CLLocation alloc] initWithLatitude:self.locationManager.location.coordinate.latitude longitude: self.locationManager.location.coordinate.longitude];
+    
+    CLLocation *opponent = [[CLLocation alloc] initWithLatitude:self.opponent.latitude longitude:self.opponent.longitude];
+    CLLocationDistance distance = [opponent distanceFromLocation:opponent]; //USe me normally opponent to opponent to test success
+    if (distance <=250) {//distance in meters
+        [self assassinationSuccessful];
+    }else  {
+        [self assassinationFailed: distance];
+    }
+}
+
+- (void) assassinationSuccessful {
+    NSLog(@"To Do: Assassination successful");
+}
+
+- (void) assassinationFailed: (CLLocationDistance) distance{
+    NSLog(@"To Do: Assassination failed as was at %f away.", distance);
 }
 
 - (void)didReceiveMemoryWarning
