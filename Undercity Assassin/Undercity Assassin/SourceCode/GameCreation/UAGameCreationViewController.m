@@ -122,8 +122,39 @@
         }
         [text appendString:user.name];
     }
-    
+    [self sendRequests];
     [self fillTextBoxAndDismiss:text.length > 0 ? text : @"<None>"];
+}
+
+- (void) sendRequests {
+    NSMutableString *text = [[NSMutableString alloc] init];
+    for (id<FBGraphUser> user in self.friendPickerController.selection) {
+        if ([text length]) {
+            [text appendString:@", "];
+        }
+        [text appendString:user.id];
+    }
+    NSMutableDictionary* params =   [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     text, @"to",
+                                     nil];
+    [FBWebDialogs presentRequestsDialogModallyWithSession:nil
+                                                  message:[NSString stringWithFormat:@"I've invited you to come play Undercity Assassin with me"]
+                                                    title:nil
+                                               parameters:params
+                                                  handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+          if (error) {
+              // Case A: Error launching the dialog or sending request.
+              NSLog(@"Error sending request.");
+          } else {
+              if (result == FBWebDialogResultDialogNotCompleted) {
+                  // Case B: User clicked the "x" icon
+                  NSLog(@"User canceled request.");
+              } else {
+                  NSLog(@"Request Sent.");
+                  //TODO: Add users to invite list.
+              }
+          }
+    }];
 }
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender {

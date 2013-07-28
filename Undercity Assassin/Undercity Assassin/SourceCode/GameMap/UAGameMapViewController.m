@@ -108,7 +108,7 @@
 // Post a status update to the user's feed via the Graph API, and display an alert view
 // with the results or an error.
 
-// This code uses 3 different ways of sharing using the Facebook SDK.
+// This code uses 3 different ways of sharing using the Facebook SDK to enable a solid user experience: It is heavily influenced by the demo code in the helloFacebook example.
 // The first method tries to share via the Facebook app. This allows sharing without
 // the user having to authorize your app, and is available as long as the user has the
 // correct Facebook app installed. This publish will result in a fast-app-switch to the
@@ -161,10 +161,7 @@
                                                 completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                                                     
                                                     [self showAlert:message result:result error:error];
-                                                    // self.buttonPostStatus.enabled = YES;
                                                 }];
-                    
-                    // self.buttonPostStatus.enabled = NO;
                 }];
             }else{
                 NSLog(@"Got to here without publishing");
@@ -178,7 +175,6 @@
                                                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                                      
                                      [self showAlert:message result:result error:error];
-                                     // self.buttonPostStatus.enabled = YES;
                         }];
                      }];
                 }];
@@ -247,7 +243,7 @@
                                                 if (!error) {
                                                     action();
                                                 }
-                                                //For this example, ignore errors (such as if user cancels).
+                                                //Ignore errors (such as if user cancels).
                                             }];
     } else {
         NSLog(@"Posting");
