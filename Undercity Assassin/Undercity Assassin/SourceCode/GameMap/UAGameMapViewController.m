@@ -95,7 +95,7 @@
     CLLocation *me = [[CLLocation alloc] initWithLatitude:self.locationManager.location.coordinate.latitude longitude: self.locationManager.location.coordinate.longitude];
     
     CLLocation *opponent = [[CLLocation alloc] initWithLatitude:self.opponent.latitude longitude:self.opponent.longitude];
-    CLLocationDistance distance = [opponent distanceFromLocation:opponent]; //USe me normally opponent to opponent to test success
+    CLLocationDistance distance = [me distanceFromLocation:me]; //USe me normally opponent to opponent to test success
     if (distance <=250) {//distance in meters
         [self assassinationSuccessful];
     }else  {
@@ -105,7 +105,126 @@
 
 - (void) assassinationSuccessful {
     NSLog(@"To Do: Assassination successful");
+// Post a status update to the user's feed via the Graph API, and display an alert view
+// with the results or an error.
+
+// This code uses 3 different ways of sharing using the Facebook SDK.
+// The first method tries to share via the Facebook app. This allows sharing without
+// the user having to authorize your app, and is available as long as the user has the
+// correct Facebook app installed. This publish will result in a fast-app-switch to the
+// Facebook app.
+    
+// The second method tries to share via Facebook's iOS6 integration, which also
+// allows sharing without the user having to authorize your app, and is available as
+// long as the user has linked their Facebook account with iOS6. This publish will
+// result in a popup iOS6 dialog.
+    
+// The third method tries to share via a Graph API request. This does require the user
+// to authorize your app. They must also grant your app publish permissions. This
+// allows the app to publish without any user interaction.
+    
+//We'd prefer to have the user confirm publication so this method is a last resort and may be replaced by a window inviting the user to share in app.
+
+// If it is available, we will first try to post using the share dialog in the Facebook app
+    FBAppCall *appCall = [FBDialogs presentShareDialogWithLink:nil
+                                                              name:@"Target Eliminated"
+                                                           caption:nil
+                                                       description:@"I successfully eliminated a target in undercity assassin."
+                                                           picture:nil
+                                                       clientState:nil
+                                                           handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                                               if (error) {
+                                                                   NSLog(@"Error: %@", error.description);
+                                                               } else {
+                                                                   NSLog(@"Success!");
+                                                               }
+                                                           }];
+
+    if (!appCall) {
+        // Next try to post using Facebook's iOS6 integration
+        BOOL displayedNativeDialog = [FBDialogs presentOSIntegratedShareDialogModallyFrom:self
+                                                                              initialText:@"I successfully eliminated a target in undercity assassin"
+                                                                                    image:nil
+                                                                                      url:nil
+                                                                                  handler:nil];
+        
+        if (!displayedNativeDialog) {
+            // Lastly, fall back on a request for permissions and a direct post using the Graph API
+            if ([[FBSession activeSession]isOpen]) {
+                NSLog(@"Session was open");
+                /*
+                 * if the current session has no publish permission we need to reauthorize
+                 */
+                [self performPublishAction:^{
+                    NSString *message = [NSString stringWithFormat:@"I successfully eliminated a target in undercity assassin"];
+                    [FBRequestConnection startForPostStatusUpdate:message
+                                                completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                                    
+                                                    [self showAlert:message result:result error:error];
+                                                    // self.buttonPostStatus.enabled = YES;
+                                                }];
+                    
+                    // self.buttonPostStatus.enabled = NO;
+                }];
+            }else{
+                NSLog(@"Got to here without publishing");
+                [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
+                                                   defaultAudience:FBSessionDefaultAudienceOnlyMe
+                                                      allowLoginUI:YES
+                                                 completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                         [self performPublishAction:^{
+                             NSString *message = [NSString stringWithFormat:@"I successfully eliminated a target in undercity assassin"];
+                             [FBRequestConnection startForPostStatusUpdate:message
+                                                         completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                     
+                                     [self showAlert:message result:result error:error];
+                                     // self.buttonPostStatus.enabled = YES;
+                        }];
+                     }];
+                }];
+            }
+        }
+    }
 }
+
+- (void)showAlert:(NSString *)message
+           result:(id)result
+            error:(NSError *)error {
+    
+    NSString *alertMsg;
+    NSString *alertTitle;
+    if (error) {
+        alertTitle = @"Error";
+        // For simplicity, we will use any error message provided by the SDK,
+        // but you may consider inspecting the fberrorShouldNotifyUser or
+        // fberrorCategory to provide better recourse to users. See the Scrumptious
+        // sample for more examples on error handling.
+        if (error.fberrorUserMessage) {
+            alertMsg = error.fberrorUserMessage;
+        } else {
+            alertMsg = @"Operation failed due to a connection problem, retry later.";
+        }
+    } else {
+        NSDictionary *resultDict = (NSDictionary *)result;
+        alertMsg = [NSString stringWithFormat:@"Successfully posted '%@'.", message];
+        NSString *postId = [resultDict valueForKey:@"id"];
+        if (!postId) {
+            postId = [resultDict valueForKey:@"postId"];
+        }
+        if (postId) {
+            alertMsg = [NSString stringWithFormat:@"%@\nPost ID: %@", alertMsg, postId];
+        }
+        alertTitle = @"Success";
+    }
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:alertTitle
+                                                        message:alertMsg
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
 
 - (void) assassinationFailed: (CLLocationDistance) distance{
     NSLog(@"To Do: Assassination failed as was at %f away.", distance);
@@ -115,6 +234,26 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) performPublishAction:(void (^)(void)) action {
+    // we defer request for permission to post to the moment of post, then we check for the permission
+    if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
+        NSLog(@"Permission not found");
+        // if we don't already have the permission, then we request it now
+        [FBSession.activeSession requestNewPublishPermissions:@[@"publish_actions"]
+                                              defaultAudience:FBSessionDefaultAudienceFriends
+                                            completionHandler:^(FBSession *session, NSError *error) {
+                                                if (!error) {
+                                                    action();
+                                                }
+                                                //For this example, ignore errors (such as if user cancels).
+                                            }];
+    } else {
+        NSLog(@"Posting");
+        action();
+    }
+    
 }
 
 @end

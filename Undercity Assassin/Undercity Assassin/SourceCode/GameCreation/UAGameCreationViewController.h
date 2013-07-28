@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UAGameCreationViewController : UIViewController
-
+- (void) performPublishAction:(void (^)(void)) action ;
+- (void)showAlert:(NSString *)message
+           result:(id)result
+            error:(NSError *)error;
 @end

@@ -131,7 +131,8 @@
     
     switch (state) {
         case FBSessionStateOpen: {
-
+            NSLog(@"Calling signedIn");
+            [self signedIn];
         }
             break;
         case FBSessionStateClosed:
@@ -178,11 +179,10 @@
         // if the session isn't open, let's open it now and present the login UX to the user
         NSLog(@"Completion handler");
         [appDelegate.session openWithCompletionHandler:^(FBSession *session,
-                                                     FBSessionState status,
+                                                     FBSessionState state,
                                                      NSError *error) {
+            [self sessionStateChanged:session state:state error:error];
             // and here we make sure to update our UX according to the new session state
-            NSLog(@"Calling signedIn");
-            [self signedIn];
         }];
     }
 }
