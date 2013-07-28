@@ -168,14 +168,15 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 - (IBAction)startGame:(id)sender {
-    //TODO: Only allow a start with at least two players. Give a pop-up warning if there are players invited who haven't accepted.
     if ([self shouldStartGame]) {
         //TODO: Set an ingame flag in core data to avoid this screen and go straight to the app once loaded.
-        
+    } else {
+        //TODO: Throw up a modal explaining the game is currently in demo only version and the WebAPI to play multiplayer is coming soon.
     }
 }
+
 -(BOOL) shouldStartGame {
-    return YES;
+    return  NO; // API NOT YET BUILT.
 }
 
 @end

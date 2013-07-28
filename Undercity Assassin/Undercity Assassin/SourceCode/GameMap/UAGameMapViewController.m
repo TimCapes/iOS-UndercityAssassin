@@ -95,7 +95,7 @@
     CLLocation *me = [[CLLocation alloc] initWithLatitude:self.locationManager.location.coordinate.latitude longitude: self.locationManager.location.coordinate.longitude];
     
     CLLocation *opponent = [[CLLocation alloc] initWithLatitude:self.opponent.latitude longitude:self.opponent.longitude];
-    CLLocationDistance distance = [me distanceFromLocation:me]; //USe me normally opponent to opponent to test success
+    CLLocationDistance distance = [me distanceFromLocation:me]; //Use me normally opponent to opponent to test success
     if (distance <=250) {//distance in meters
         [self assassinationSuccessful];
     }else  {

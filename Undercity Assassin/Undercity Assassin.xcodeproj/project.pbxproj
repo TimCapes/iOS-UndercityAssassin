@@ -131,7 +131,6 @@
 		ACAA5F8217A44AF700343E4D = {
 			isa = PBXGroup;
 			children = (
-				ACB212DD17A5A6AA0058D8D8 /* FacebookSDK.framework */,
 				ACAA5F9617A44AF700343E4D /* Undercity Assassin */,
 				ACAA5F8D17A44AF700343E4D /* Frameworks */,
 				ACAA5F8C17A44AF700343E4D /* Products */,
@@ -149,6 +148,7 @@
 		ACAA5F8D17A44AF700343E4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACB212DD17A5A6AA0058D8D8 /* FacebookSDK.framework */,
 				ACBA660717A5A1DA003A5C61 /* Security.framework */,
 				ACBA660517A5A150003A5C61 /* Social.framework */,
 				ACBA660317A5A063003A5C61 /* libsqlite3.dylib */,
