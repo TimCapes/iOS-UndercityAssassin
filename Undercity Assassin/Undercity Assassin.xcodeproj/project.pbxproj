@@ -45,6 +45,7 @@
 		ACB212DE17A5A6AA0058D8D8 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB212DD17A5A6AA0058D8D8 /* FacebookSDK.framework */; };
 		ACB212E017A5D32E0058D8D8 /* button_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB212DF17A5D32E0058D8D8 /* button_green@2x.png */; };
 		ACB212E217A5D3B90058D8D8 /* button_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB212E117A5D3B90058D8D8 /* button_red@2x.png */; };
+		ACB212E617A5D9FD0058D8D8 /* UAGamePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB212E517A5D9FD0058D8D8 /* UAGamePlayer.m */; };
 		ACBA660417A5A063003A5C61 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBA660317A5A063003A5C61 /* libsqlite3.dylib */; };
 		ACBA660617A5A150003A5C61 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBA660517A5A150003A5C61 /* Social.framework */; };
 		ACBA660817A5A1DA003A5C61 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBA660717A5A1DA003A5C61 /* Security.framework */; };
@@ -102,6 +103,8 @@
 		ACB212DD17A5A6AA0058D8D8 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "Undercity Assassin/SupportingClasses/VendorClasses/FacebookSDK/FacebookSDK.framework"; sourceTree = "<group>"; };
 		ACB212DF17A5D32E0058D8D8 /* button_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_green@2x.png"; sourceTree = "<group>"; };
 		ACB212E117A5D3B90058D8D8 /* button_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_red@2x.png"; sourceTree = "<group>"; };
+		ACB212E417A5D9FD0058D8D8 /* UAGamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAGamePlayer.h; sourceTree = "<group>"; };
+		ACB212E517A5D9FD0058D8D8 /* UAGamePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAGamePlayer.m; sourceTree = "<group>"; };
 		ACBA660317A5A063003A5C61 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		ACBA660517A5A150003A5C61 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		ACBA660717A5A1DA003A5C61 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -253,6 +256,7 @@
 		ACAA5FD817A45D7F00343E4D /* SupportingClasses */ = {
 			isa = PBXGroup;
 			children = (
+				ACB212E317A5D9D90058D8D8 /* DataClasses */,
 				ACAA5FF717A46CD100343E4D /* HelperClasses */,
 				ACAA5FD917A45D7F00343E4D /* VendorClasses */,
 			);
@@ -318,6 +322,15 @@
 				ACAA61EE17A4900800343E4D /* UAGameCreationViewController.xib */,
 			);
 			path = GameCreation;
+			sourceTree = "<group>";
+		};
+		ACB212E317A5D9D90058D8D8 /* DataClasses */ = {
+			isa = PBXGroup;
+			children = (
+				ACB212E417A5D9FD0058D8D8 /* UAGamePlayer.h */,
+				ACB212E517A5D9FD0058D8D8 /* UAGamePlayer.m */,
+			);
+			path = DataClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +423,7 @@
 				ACAA5FF317A4619C00343E4D /* UAStartViewController.m in Sources */,
 				ACAA5FFB17A46CE000343E4D /* UASwipeViewController.m in Sources */,
 				ACAA61EF17A4900800343E4D /* UAGameCreationViewController.m in Sources */,
+				ACB212E617A5D9FD0058D8D8 /* UAGamePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

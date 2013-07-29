@@ -11,9 +11,11 @@
 #import "UAGameOptionsViewController.h"
 #import "IIViewDeckController.h"
 #import "UAAppDelegate.h"
+#import "UAGamePlayer.h"
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface UAGameCreationViewController ()<FBFriendPickerDelegate>
+
+@interface UAGameCreationViewController ()<FBFriendPickerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *demoButton;
 @property (weak, nonatomic) IBOutlet UIButton *inviteButton;
@@ -21,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectedFriendsView;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundTableCover;
+@property (retain, nonatomic) NSMutableArray *invited;
+@property (retain, nonatomic) NSMutableArray *accepted;
 
 @end
 
@@ -41,6 +45,64 @@
     self.view.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1];
     self.backgroundTableCover.backgroundColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1];
     // Do any additional setup after loading the view from its nib.
+    self.accepted = [NSMutableArray arrayWithObjects:nil];
+    self.invited= [NSMutableArray arrayWithObjects:nil];
+
+}
+
+- (void)viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [self loadAccepted];
+    [self loadInvited];
+
+}
+
+- (void) loadInvited {
+    UAAppDelegate *appDelegate = (UAAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"UAGamePlayer" inManagedObjectContext:appDelegate.managedObjectContext];
+    [fetch setEntity:testEntity];
+    //NSPredicate *pred=[NSPredicate predicateWithFormat:@"hasAccepted==%s", NO];
+    //[fetch setPredicate:[NSArray arrayWithObject:pred]];
+    //NSLog(@"ready to fetch");
+    NSError *fetchError=nil;
+    NSArray *fetchedObjs=[appDelegate.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+    if (fetchError!=nil) {
+        NSLog(@" fetchError=%@,details=%@",fetchError,fetchError.userInfo);
+        self.invited = [NSMutableArray arrayWithObjects:nil];
+    } else {
+        NSLog(@"Got insite loop");
+        self.invited = [NSMutableArray arrayWithObjects:nil];
+        for (int i=0;i < [fetchedObjs count]; i++) {
+            [self.invited addObject:[(UAGamePlayer *)[fetchedObjs objectAtIndex:i] name]];
+        }
+    }
+}
+
+- (void) loadAccepted {
+    UAAppDelegate *appDelegate = (UAAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
+    NSEntityDescription *testEntity=[NSEntityDescription entityForName:@"UAGamePlayer" inManagedObjectContext:appDelegate.managedObjectContext];
+    [fetch setEntity:testEntity];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+    [fetch setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+
+    //NSPredicate *pred=[NSPredicate predicateWithFormat:@"hasAccepted==%s",YES];
+    //NSLog(@"predicate parsed");
+    //[fetch setPredicate:[NSArray arrayWithObject:pred]];
+    //NSLog(@"predicate set");
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[appDelegate.managedObjectContext executeFetchRequest:fetch error:&error] mutableCopy];
+    //NSArray *fetchedObjs=[appDelegate.managedObjectContext executeFetchRequest:fetch error:&fetchError];
+    if (error!=nil) {
+        NSLog(@" error=%@,details=%@",error,error.userInfo);
+        self.accepted = [NSMutableArray arrayWithObjects:nil];
+    } else {
+        self.accepted = [NSMutableArray arrayWithObjects:nil];
+        for (int i=0;i < [mutableFetchResults count]; i++) {
+            [self.invited addObject:[(UAGamePlayer *)[mutableFetchResults objectAtIndex:i] name]];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,10 +217,30 @@
                   NSLog(@"User canceled request.");
               } else {
                   NSLog(@"Request Sent.");
+                  [self savePickedUsers];
                   //TODO: Add users to invite list.
               }
           }
     }];
+}
+- (void) savePickedUsers {
+    NSLog(@"Saving pickedUsers");
+    UAAppDelegate *appDelegate = (UAAppDelegate *)[[UIApplication sharedApplication] delegate];
+    for (id<FBGraphUser> user in self.friendPickerController.selection) {
+        UAGamePlayer *invitedUser = [NSEntityDescription insertNewObjectForEntityForName:@"UAGamePlayer"
+                                                  inManagedObjectContext:appDelegate.managedObjectContext];
+        invitedUser.hasAccepted = [NSNumber numberWithBool:NO];
+        invitedUser.facebookID = user.id;
+        invitedUser.name = user.name;
+        NSError *saveError=nil;
+        [appDelegate.managedObjectContext save:&saveError];
+        if (saveError!=nil) {
+            NSLog(@"[%@ saveContext] Error saving context: Error=%@,details=%@",[self class], saveError,saveError.userInfo);
+        }
+        NSLog(@"Saved user");
+    }
+    [self loadInvited];
+    [self.playerTable reloadData];
 }
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender {
@@ -181,6 +263,66 @@
 
 -(BOOL) shouldStartGame {
     return  NO; // API NOT YET BUILT.
+}
+
+#pragma mark TableView Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section==0) {
+        return @"Accepted";
+    } else {
+        return @"Invited";
+    }
+}
+- (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
+    if (section==0) {
+        return [self.accepted count]+1;
+    } else {
+        return [self.invited count]+1;
+    }
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section==0) {
+        if (indexPath.row < [self.accepted count]) {
+           UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UAGamePlayerCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UAGamePlayerCell"];
+            }
+            cell.textLabel.text = [self.accepted objectAtIndex:indexPath.row];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            return cell;
+        } else {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UAGamePlayerCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UAGamePlayerCell"];
+            }
+            cell.textLabel.text = [NSString stringWithFormat:@"There are %d confirmed players (including you)", [self.accepted count]+1];
+            cell.textLabel.font = [UIFont systemFontOfSize:12];
+            return cell;
+
+        }
+    } else { //if (indexPath.section==1) {
+        if (indexPath.row < [self.invited count]) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UAGamePlayerCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UAGamePlayerCell"];
+            }
+            cell.textLabel.text = [self.invited objectAtIndex:indexPath.row];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            return cell;
+        } else {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UAGamePlayerCell"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UAGamePlayerCell"];
+            }
+            cell.textLabel.text = [NSString stringWithFormat:@"You are waiting on %d invited players", [self.invited count]];
+            cell.textLabel.font = [UIFont systemFontOfSize:12];
+            return cell;
+        }
+    }
 }
 
 @end
