@@ -230,7 +230,6 @@
         UAGamePlayer *invitedUser = [NSEntityDescription insertNewObjectForEntityForName:@"UAGamePlayer"
                                                   inManagedObjectContext:appDelegate.managedObjectContext];
         invitedUser.hasAccepted = [NSNumber numberWithBool:NO];
-        invitedUser.facebookID = user.id;
         invitedUser.name = user.name;
         NSError *saveError=nil;
         [appDelegate.managedObjectContext save:&saveError];

@@ -12,6 +12,5 @@
 
 @dynamic hasAccepted;
 @dynamic name;
-@dynamic facebookID;
 
 @end
